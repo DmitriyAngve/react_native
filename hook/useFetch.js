@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { RAPID_API_KEY } from "@env";
+// import { RAPID_API_KEY } from "@env";
 
-const rapidApiKey = RAPID_API_KEY;
+// const rapidApiKey = RAPID_API_KEY;
 
 const useFetch = (endpoint, query) => {
   const [data, setData] = useState([]); // создаю состояния (data - для хранения данных, полученных после выполнения запроса)
   const [isLoading, setIsLoading] = useState(); // isLoading - для отслеживания состояния выполнения запроса
   const [error, setError] = useState(null); // для отслеживания ошибок
 
-  const axios = require("axios");
+  // const axios = require("axios");
 
   // Это взято из RapidAPI
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": rapidApiKey,
+      "X-RapidAPI-Key": "9b4c725883msh91c9e76339ca3ccp10177ejsn2ffb0ab5e030",
       "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
     },
     url: `https://jsearch.p.rapidapi.com/search/${endpoint}`,
@@ -33,7 +33,7 @@ const useFetch = (endpoint, query) => {
       setIsLoading(false);
     } catch (error) {
       setError(error);
-      alert("There is an error");
+      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -50,3 +50,5 @@ const useFetch = (endpoint, query) => {
   // Возвращаю объект с данными. data - полученные данные. isLoading - флаг, указывающий на состояние выполнения запроса. error - информация об ошибке. refetch - ф-ия для повторного выполнения запроса
   return { data, isLoading, error, refetch };
 };
+
+export default useFetch;
